@@ -8,8 +8,9 @@
 # MasseyとColleyの方法
 ## 使い方
 次のような形式のデータを作成する
+(試合数が行数)
 
-``data.csv``
+``data/sample.csv``
 ```
 teamA,teamB,score
 AAA,BBB,4-1
@@ -19,16 +20,16 @@ AAA,CCC,3-2
 これをdata_convertで変換する
 
 ``` shell
-python data_convert.py -f data.csv
+python data_convert.py -f data/sample.csv --header 0
 ```
 
-同じディレクトリにdata.jsonが生成されるので、これを使って次のようなプログラムを作成する
+同じディレクトリに``sample.json``が生成されるので、これを使って次のようなプログラムを実行する
 
 ``` python
-from Massey_andColley import Massey, Colley
+from Massey_and_Colley.Massey_and_Colley import Massey, Colley
 import json
 
-with open('data.json',r) as f:
+with open('data/sample.json','r') as f:
     data = json.load(f)
 
 massey = Massey(data)
