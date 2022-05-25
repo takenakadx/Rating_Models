@@ -3,6 +3,7 @@ import json
 import argparse
 import os
 import traceback
+import tqdm
 
 def input_data(data,teamA,teamB,point):
     if not teamA in data:
@@ -24,7 +25,7 @@ def load_match_csv(filename,header=None):
     except FileNotFoundError:
         print(f'There is no such file "{filename}"')
         return
-    for i,r in df.iterrows():
+    for i,r in tqdm.tqdm(df.iterrows()):
         input_match_to_data(data,r['teamA'],r['teamB'],r['score'])
     with open(os.path.splitext(filename)[0]+'.json','w') as f:
         json.dump(data,f,indent=4)
